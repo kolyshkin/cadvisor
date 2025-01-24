@@ -1,4 +1,4 @@
-FROM registry.hub.docker.com/library/golang:1.22-alpine3.18 AS build
+FROM registry.hub.docker.com/library/golang:1.23-alpine3.21 AS build
 
 # Install build depdencies for all supported arches
 RUN apk --no-cache add bash build-base cmake device-mapper findutils git \
@@ -50,7 +50,7 @@ RUN export GO_TAGS="libpfm,netgo"; \
     fi; \
     GO_FLAGS="-tags=$GO_TAGS" ./build/build.sh
 
-FROM mirror.gcr.io/library/alpine:3.18
+FROM mirror.gcr.io/library/alpine:3.21
 MAINTAINER dengnan@google.com vmarmol@google.com vishnuk@google.com jimmidyson@gmail.com stclair@google.com
 
 RUN apk --no-cache add libc6-compat device-mapper findutils ndctl zfs && \
